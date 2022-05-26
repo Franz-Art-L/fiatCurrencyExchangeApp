@@ -18,11 +18,11 @@ const Navbar = props => {
             aria-controls="navbarsExample09" 
             aria-expanded={!isNavCollapsed ? true : false} 
             aria-label="Toggle navigation" onClick={handleNavCollapse}>
-                <span class="navbar-toggler-icon"></span>
+                <span className="navbar-toggler-icon"></span>
             </button>
 
             
-                    <div class={`${isNavCollapsed ? 'collapse' : ''} navbar-collapse`} id="navbarsExample09">
+                    <div className={`${isNavCollapsed ? 'collapse' : ''} navbar-collapse`} id="navbarsExample09">
                         <div className='d-flex flex-wrap'>
                         <a className="nav-link text-info" href="#converter">Converter</a>
                             <a className="nav-link text-info" href="#chart">Chart</a>
