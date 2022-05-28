@@ -1,4 +1,3 @@
-// currencies.js
 const currencies = {
     AUD: {
       symbol: '$',

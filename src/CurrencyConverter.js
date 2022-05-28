@@ -1,5 +1,5 @@
 import React from "react";
-import { checkResponse, json } from "./utils";
+import { checkResponse, json } from "./utils/fetchUtils";
 
 class CurrencyConverter extends React.Component {
     constructor(props) {
@@ -84,7 +84,7 @@ class CurrencyConverter extends React.Component {
                         </div>
                         <div className="row text-center">
                             <div className="col-6 col-xl-6 mx-auto mt-4 text-center">
-                                <input type="number" className="form-control form-control-xl my-3" placeholder="1" min="0" onChange={this.changeInputAmount}/>
+                                <input type="number" className="form-control form-control-xl my-3" placeholder="0" min="0" onChange={this.changeInputAmount}/>
                             </div>
                             <div className="col-6 col-xl-6 mx-auto mt-4 disabled text-center">
                                 <input type="number" className="form-control form-control-xl my-3" placeholder readOnly value=""/>
