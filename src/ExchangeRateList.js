@@ -18,7 +18,7 @@ class ExchangeRateList extends React.Component {
         this.getTheDataOfRates(this.state.baseCurrency);
     }
 
-    getTheDataOfRates(baseCurrency) {
+    getTheDataOfRates = baseCurrency => {
         this.setState({loading: true})
         fetch(`https://altexchangerateapi.herokuapp.com/latest?from=${baseCurrency}`)
         .then(checkResponse)
@@ -37,7 +37,7 @@ class ExchangeRateList extends React.Component {
                 symbol: currencies[acronym].symbol,
             }))
 
-            console.log(data);
+            
             this.setState({exchangeRates, loading: false});
         })
         .catch(error => console.error(error.message));
@@ -45,27 +45,33 @@ class ExchangeRateList extends React.Component {
 
     changeBaseCurrency = event => {
         this.setState({baseCurrency: event.target.value});
-        this.getTheDataOfRates(this.state.baseCurrency);
+        this.getTheDataOfRates(event.target.value);
     }
     
     render() {
         const {baseCurrency, exchangeRates, loading} = this.state;
         return(
             <>
-                 <div className="container my-3 row-wrapper">
+                 <div className="container my-3 row-wrapper" id="exchangeRateList">
                      <div className="row">
 
                         <div className="col-6 col-xl-6 mx-auto mt-4 pt-3 disabled text-center">
+                            
                             <h5>1 {baseCurrency}</h5>
+                            
                             <h5>Exchange Rates</h5>
+                        
                         </div>
 
                         <div className="col-6 col-xl-6 mx-auto mt-4 disabled text-center">
                             <form className="p-3 bg-light form-inline justify-content-center">
+                                
                                 <h5>Base Currency</h5>
+
                                 <select value={baseCurrency} onChange={this.changeBaseCurrency} className="form-control form-control-md text-center mb-2" disabled={loading}>
                                 {Object.keys(currencies).map(currencyAcronym => <option key={currencyAcronym} value={currencyAcronym}>{currencyAcronym}</option>)}
                                 </select>
+
                             </form>
                         </div>  
 

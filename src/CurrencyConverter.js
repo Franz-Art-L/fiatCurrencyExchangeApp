@@ -1,75 +1,48 @@
 import React from "react";
+import currencies from "./utils/currencies";
 import { checkResponse, json } from "./utils/fetchUtils";
 
 class CurrencyConverter extends React.Component {
     constructor(props) {
-        super();
+        super(props);
         
         this.state = {
-            listOfCurrencies: [],
+            rate: 52.2480,
+
             leftBaseCurrency: "USD",
-            currencyRight: "PHP",
-            amountToBeExchange: 0,
-            resultOfConversion: '',
-            rates: [],
+            baseAmount: 0,
+
+            rightQuoteCurrency: "PHP",
+            quoteAmount: 0,
+
+            date: new Date(),
+
+            loading: false,
             error: '',
         }
 
-        this.getRates = this.getRates.bind(this);
-        this.changeInputAmount = this.changeInputAmount.bind(this);
-        this.rightCurrencyDropDown = this.rightCurrencyDropDown.bind(this);
-        this.leftCurrencyDropDown = this.leftCurrencyDropDown.bind(this);
-        this.switchCurrencies = this.switchCurrencies.bind(this);
-        this.conversionCalculator = this.conversionCalculator.bind(this);
-
     }
-
-    componentDidMount() {
-            const {leftBaseCurrency} = this.state;
-            this.getRates(leftBaseCurrency);
-    }
-
-    changeInputAmount(event) {
-        
-    }
-
-    getRates() {
-        fetch(`https://altexchangerateapi.herokuapp.com/latest?from={leftBaseCurrency}`)
-        .then(checkResponse)
-        .then(json)
-        .then(data => {
-            console.log(data);
-            this.setState({rates: data})
-        }).catch(error => {
-            console.log(error.message)
-            this.setState({error: error})
-        })
-    }
-
-
-    rightCurrencyDropDown() {
-
-    }
-
-    leftCurrencyDropDown() {
-
-    }
-
-    switchCurrencies() {
-
-    }
-
-    conversionCalculator() {
-       
-    }
-
 
     render() {
-        const {leftBaseCurrency, currencyRight } = this.state;
+        const {rate, leftBaseCurrency, baseAmount, rightQuoteCurrency, quoteAmount, loading, error, date  } = this.state;
 
+        const currencyOptions = Object.keys(currencies).map(currencyAcronym => 
+        <option key={currencyAcronym} value={currencyAcronym}>
+        {currencyAcronym}
+        </option>);
+        
         return(
             <>
-                <div className="container my-3 row-wrapper">
+                <div className="text-center p-3">
+
+                <h3 className="mb-2">🏦Fiat Currency Converter💱</h3>
+                
+                <p className="text-center">{date.toLocaleDateString()}</p>
+
+                <h4>1 {leftBaseCurrency} to 1 {rightQuoteCurrency} = {rate} {currencies[rightQuoteCurrency].name}</h4>
+
+                </div>
+                <div className="container my-3 row-wrapper" id="currencyConverter">
                     <div className="row">
                         <div className="col-4 col-xl-4 mx-auto mt-3 text-center">
                             <h4>{leftBaseCurrency}</h4>
@@ -79,15 +52,15 @@ class CurrencyConverter extends React.Component {
                             <button className="btn btn-md btn-outline-dark" onClick={this.switchCurrencies}>🔁</button>
                         </div>
                         <div className="col-4 col-xl-4 mx-auto mt-3 text-center">
-                            <h4>{currencyRight}</h4>
-                            <select name="currencies" id="currencyChoices" className=""></select>
+                            <h4>{rightQuoteCurrency}</h4>
+                            <select name="currencies" id="currencyChoices"></select>
                         </div>
                         <div className="row text-center">
                             <div className="col-6 col-xl-6 mx-auto mt-4 text-center">
                                 <input type="number" className="form-control form-control-xl my-3" placeholder="0" min="0" onChange={this.changeInputAmount}/>
                             </div>
                             <div className="col-6 col-xl-6 mx-auto mt-4 disabled text-center">
-                                <input type="number" className="form-control form-control-xl my-3" placeholder readOnly value=""/>
+                                <input type="number" className="form-control form-control-xl my-3" placeholder="0" onChange={this.changeInputAmount}/>
                             </div>
                         </div>
                     </div>

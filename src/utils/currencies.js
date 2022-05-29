@@ -1,137 +1,136 @@
 const currencies = {
     AUD: {
-      symbol: '$',
-      name: 'Australian dollar',
+        symbol: '$',
+        name: '🇦🇺 Australian dollar',     
     },
     BGN: {
-      symbol: 'лв',
-      name: 'Bulgarian lev',
+        symbol: 'лв',
+        name: '🇧🇬 Bulgarian lev',
     },
     BRL: {
-      symbol: 'R$',
-      name: 'Brazilian real',
+        symbol: 'R$',
+        name: '🇧🇷 Brazilian real',
     },
     CAD: {
-      symbol: '$',
-      name: 'Canadian dollar',
+        symbol: '$',
+        name: '🇨🇦 Canadian dollar',
     },
     CHF: {
-      symbol: 'Fr',
-      name: 'Swiss franc',
+        symbol: 'Fr',
+        name: '🇨🇭 Swiss franc',
     },
     CNY: {
-      symbol: '¥',
-      name: 'Chinese yuan',
+        symbol: '¥',
+        name: '🇨🇳 Chinese yuan',
     },
     CZK: {
-      symbol: 'Kč',
-      name: 'Czech koruna',
+        symbol: 'Kč',
+        name: '🇨🇿 Czech koruna',
     },
     DKK: {
-      symbol: 'kr',
-      name: 'Danish krone',
+        symbol: 'kr',
+        name: '🇩🇰 Danish krone',
     },
     EUR: {
-      symbol: '€',
-      name: 'Euro',
+        symbol: '€',
+        name: '🇪🇺 Euro',
     },
     GBP: {
-      symbol: '£',
-      name: 'British pound',
+        symbol: '£',
+        name: '🇬🇧 British pound',
     },
     HKD: {
-      symbol: '$',
-      name: 'Hong Kong dollar',
+        symbol: '$',
+        name: '🇭🇰 Hong Kong dollar',
     },
     HRK: {
-      symbol: 'kn',
-      name: 'Croatian kuna',
+        symbol: 'kn',
+        name: '🇭🇷 Croatian kuna',
     },
     HUF: {
-      symbol: 'Ft',
-      name: 'Hungarian forint',
+        symbol: 'Ft',
+        name: '🇭🇺 Hungarian forint',
     },
     IDR: {
-      symbol: 'Rp',
-      name: 'Indonesian rupiah',
+        symbol: 'Rp',
+        name: '🇮🇩 Indonesian rupiah',
     },
     ILS: {
-      symbol: '₪',
-      name: 'Israeli new shekel',
+        symbol: '₪',
+        name: '🇮🇱 Israeli new shekel',
     },
     INR: {
-      symbol: '₹',
-      name: 'Indian rupee',
+        symbol: '₹',
+        name: '🇮🇳 Indian rupee',
     },
     ISK: {
-      symbol: 'kr',
-      name: 'Icelandic króna',
+        symbol: 'kr',
+        name: '🇮🇸 Icelandic króna',
     },
     JPY: {
-      symbol: '¥',
-      name: 'Japanese yen',
+        symbol: '¥',
+        name: '🇯🇵 Japanese yen',
     },
     KRW: {
-      symbol: '₩',
-      name: 'South Korean won',
+        symbol: '₩',
+        name: '🇰🇷 South Korean won',
     },
     MXN: {
-      symbol: '$',
-      name: 'Mexican peso',
+        symbol: '$',
+        name: '🇲🇽 Mexican peso',
     },
     MYR: {
-      symbol: 'RM',
-      name: 'Malaysian ringgit',
+        symbol: 'RM',
+        name: '🇲🇾 Malaysian ringgit',
     },
     NOK: {
-      symbol: 'kr',
-      name: 'Norwegian krone',
+        symbol: 'kr',
+        name: '🇳🇴 Norwegian krone',
     },
     NZD: {
-      symbol: '$',
-      name: 'New Zealand dollar',
+        symbol: '$',
+        name: '🇳🇿 New Zealand dollar',
     },
     PHP: {
-      symbol: '₱',
-      name: 'Philippine peso',
+        symbol: '₱',
+        name: '🇵🇭 Philippine peso',
     },
     PLN: {
-      symbol: 'zł',
-      name: 'Polish złoty ',
+        symbol: 'zł',
+        name: '🇵🇱 Polish złoty ',
     },
     RON: {
-      symbol: 'lei',
-      name: 'Romanian leu',
+        symbol: 'lei',
+        name: '🇷🇴 Romanian leu',
     },
     RUB: {
-      symbol: '₽',
-      name: 'Russian ruble',
+        symbol: '₽',
+        name: '🇷🇺 Russian ruble',
     },
     SEK: {
-      symbol: 'kr',
-      name: 'Swedish krona',
+        symbol: 'kr',
+        name: '🇸🇪 Swedish krona',
     },
     SGD: {
-      symbol: '$',
-      name: 'Singapore dollar',
+        symbol: '$',
+        name: '🇸🇬 Singapore dollar',
     },
     THB: {
-      symbol: '฿',
-      name: 'Thai baht',
+        symbol: '฿',
+        name: '🇹🇭 Thai baht',
     },
     TRY: {
-      symbol: '₺',
-      name: 'Turkish lira',
+        symbol: '₺',
+        name: '🇹🇷 Turkish lira',
     },
     USD: {
-      symbol: '$',
-      name: 'United States dollar',
+        symbol: '$',
+        name: '🇺🇸 United States dollar',
     },
     ZAR: {
-      symbol: 'R',
-      name: 'South African rand',
+        symbol: 'R',
+        name: '🇿🇦 South African rand',
     },
-  }
-  
-  export default currencies;
-  
+}
+
+export default currencies;

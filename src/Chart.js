@@ -12,7 +12,7 @@ class Chart extends React.Component {
     render() {
         return(
             <>
-                <div className="container my-3 row-wrapper">
+                <div className="container my-3 row-wrapper" id="chart">
                     <div className="row">
                         <h2>Chart coming soon... 🌅</h2>
                     </div>

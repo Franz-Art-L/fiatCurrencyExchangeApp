@@ -14,10 +14,10 @@ const CurrencyTable = props => {
                 {exchangeRates.map(currency => 
                     <tr key={currency.acronym}>
                         <td className='pl-4 py-2'>
-                            {currency.name}
-                            <small>
-                                ({currency.acronym})
-                            </small>
+                            <em>{currency.name}</em>
+                            <b>
+                               <span> </span> ({currency.acronym})
+                            </b>
                         </td>
                         <td className='text-right pr-4 py-2'>
                             {currency.rate.toFixed(6)}

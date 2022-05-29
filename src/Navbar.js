@@ -9,8 +9,8 @@ const Navbar = props => {
       <>
         <nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
         <div className='container-fluid'>
-                <a className="navbar-brand font-weight-bolder d-flex justify-content-start" href="#">
-                    <span className="">myFiatExchange🔁</span>
+                <a className="navbar-brand font-weight-bolder d-flex justify-content-start" href="/">
+                    <span className="">myFiatSwap🔁</span>
                 </a>
                   
             <button className="custom-toggler navbar-toggler" 

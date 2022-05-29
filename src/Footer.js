@@ -16,18 +16,20 @@ const Footer = () => {
               className="btn btn-default"
               id="github"
               target="_blank"
-              rel="noopener noreferrer"
-            >
+              rel="noopener noreferrer">
+
               <span>Github</span>
+
             </a>
             <a
               href="https://www.linkedin.com/in/francis-artemio-landia-9a1375123/"
               className="btn btn-default"
-              id="linkedin"
+              id="Linkedin"
               target="_blank"
-              rel="noopener noreferrer"
-            >
+              rel="noopener noreferrer">
+
               <span>Linkedin</span>
+
             </a>
           </div>
         </div>
