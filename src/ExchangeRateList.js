@@ -64,7 +64,7 @@ class ExchangeRateList extends React.Component {
                         </div>
 
                         <div className="col-6 col-xl-6 mx-auto mt-4 disabled text-center">
-                            <form className="p-3 bg-light form-inline justify-content-center">
+                            <form className="p-3 bg-light form-inline justify-content-center" id="baseCurrencyForm">
                                 
                                 <h5>Base Currency</h5>
 

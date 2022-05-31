@@ -5,9 +5,19 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.row-wrapper {
-    box-shadow: 0 10px 20px rgba(148, 1, 197, 0.248);
-    border-radius: 17px;
+#baseCurrencyForm {
+    border-radius: 12px;
+}
+
+#swapLogo {
+    font-size: xx-large;
+}
+
+#currencyConverter,
+#chart,
+#exchangeRateList {
+    box-shadow: 0 10px 20px rgba(83, 81, 83, 0.248);
+    border-radius: 12px;
 }
 
 code {
