@@ -16,7 +16,7 @@ const Navbar = props => {
             <button className="custom-toggler navbar-toggler" 
             type="button" 
             data-toggle="collapse" data-target="#navbarsExample09" 
-            aria-controls="navbarsExample09" 
+            aria-controls="navbarsExample09"
             aria-expanded={!isNavCollapsed ? true : false} 
             aria-label="Toggle navigation" onClick={handleNavCollapse}>
                 <span className="navbar-toggler-icon"></span>

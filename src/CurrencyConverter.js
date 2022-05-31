@@ -1,6 +1,6 @@
 import React from "react";
 import currencies from "./utils/currencies";
-import { checkResponse, json } from "./utils/fetchUtils";
+import { checkResponse, json } from './utils/fetchUtils';
 
 class CurrencyConverter extends React.Component {
     constructor(props) {
@@ -23,13 +23,47 @@ class CurrencyConverter extends React.Component {
 
     }
 
-    render() {
-        const {rate, leftBaseCurrency, baseAmount, rightQuoteCurrency, quoteAmount, loading, error, date  } = this.state;
+    changeBaseCurrency(event) {
+        this.setState({leftBaseCurrency: event.target.value});
+    }
 
-        const currencyOptions = Object.keys(currencies).map(currencyAcronym => 
-        <option key={currencyAcronym} value={currencyAcronym}>
-        {currencyAcronym}
-        </option>);
+    changeQuoteCurrency(event) {
+        this.setState({rightQuoteCurrency: event.target.value});
+    }
+
+    forTheBase(amount, rate) {
+        return amount * (1 / rate);
+    }
+
+    forTheQuote(amount, rate) {
+        return amount * rate;
+    }
+
+    convert(amount, rate, equation) {
+        const input = parseFloat(amount);
+        if(Number.isNaN(input)) {
+            return "";
+        }
+        return equation(input, rate).toFixed(3);
+    }
+
+    baseValueChange(event) {
+        const quoteAmount = this.convert(event.target.value, this.state.rate, this.forTheQuote);
+        this.setState({baseAmount: event.target.value, quoteAmount}); 
+    }
+
+    quoteValueChange(event) {
+        const baseAmount = this.convert(event.target.value, this.state.rate, this.forTheBase);
+        this.setState({quoteAmount: event.target.value, baseAmount});
+    }
+    
+
+
+
+    render() {
+        const {rate, leftBaseCurrency, baseAmount, rightQuoteCurrency, quoteAmount, date, loading, error  } = this.state;
+
+        const currencyToChooseFrom = Object.keys(currencies).map(currencyAcronym => <option key={currencyAcronym} value={currencyAcronym}>{currencyAcronym}</option>)
         
         return(
             <>
@@ -44,25 +78,46 @@ class CurrencyConverter extends React.Component {
                 </div>
                 <div className="container my-3 row-wrapper" id="currencyConverter">
                     <div className="row">
+
                         <div className="col-4 col-xl-4 mx-auto mt-3 text-center">
-                            <h4>{leftBaseCurrency}</h4>
-                            <select name="currencies" id="currencyChoices" className=""></select>
+                            <select className="form-control text-center" value={leftBaseCurrency} disabled={loading}>{currencyToChooseFrom}</select>
                         </div>
+
                         <div className="col-4 col-xl-4 mx-auto mt-3 text-center">
                             <button className="btn btn-md btn-outline-dark" onClick={this.switchCurrencies}>🔁</button>
                         </div>
+
                         <div className="col-4 col-xl-4 mx-auto mt-3 text-center">
-                            <h4>{rightQuoteCurrency}</h4>
-                            <select name="currencies" id="currencyChoices"></select>
+                            <select className="form-control text-center" value={rightQuoteCurrency} disabled={loading}>{currencyToChooseFrom}</select>
                         </div>
-                        <div className="row text-center">
-                            <div className="col-6 col-xl-6 mx-auto mt-4 text-center">
-                                <input type="number" className="form-control form-control-xl my-3" placeholder="0" min="0" onChange={this.changeInputAmount}/>
+
+                        <div className="container my-3 row-wrapper">
+                                    <div className="row">
+                                            <div className="col-6 col-xl-6 mx-auto mt-0 text-center">
+                                                
+                                                <div className="input-group">
+                                                    <div className="input-group-prepend">
+                                                        <div className="input-group-text">
+                                                            {currencies[leftBaseCurrency].symbol}<input type="number" className="form-control form-control-xl my-3" placeholder="0" min="0" onChange={this.baseValueChange}/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            
+                                            </div>
+
+                                                <div className="col-6 col-xl-6 mx-auto mt-0 disabled text-center">
+                                        
+                                                        <div className="input-group">
+                                                            <div className="input-group-prepend">
+                                                                <div className="input-group-text">
+                                                                    {currencies[rightQuoteCurrency].symbol}<input type="number" className="form-control form-control-xl my-3" placeholder="0" min="0" onChange={this.quoteValueChange}/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                 </div>
+                                        </div>
                             </div>
-                            <div className="col-6 col-xl-6 mx-auto mt-4 disabled text-center">
-                                <input type="number" className="form-control form-control-xl my-3" placeholder="0" onChange={this.changeInputAmount}/>
-                            </div>
-                        </div>
+                
                     </div>
                 </div>
             </>
