@@ -1,16 +1,17 @@
 import React from "react";
 import currencies from "./utils/currencies";
 import { checkResponse, json } from './utils/fetchUtils';
+import Chart from "chart.js/auto";
 
 class CurrencyConverter extends React.Component {
     constructor(props) {
         super(props);
         
         this.state = {
-            rate: "",
+            rate: 0,
 
             leftBaseCurrency: "USD",
-            baseAmount: 1,
+            baseAmount: 0,
 
             rightQuoteCurrency: "PHP",
             quoteAmount: 0,
@@ -21,11 +22,13 @@ class CurrencyConverter extends React.Component {
             error: '',
         }
 
+        this.chartForThePairRef = React.createRef();
     }
 
     componentDidMount() {
         const {leftBaseCurrency, rightQuoteCurrency} = this.state;
         this.getTheRates(leftBaseCurrency, rightQuoteCurrency);
+        this.getHistoricalRatesForThePair(leftBaseCurrency, rightQuoteCurrency);
     }
 
     getTheRates = (base, quote) => {
@@ -54,13 +57,15 @@ class CurrencyConverter extends React.Component {
     changeBaseCurrency = event => {
        const leftBaseCurrency = event.target.value;
        this.setState({leftBaseCurrency});
-       this.getTheRates(leftBaseCurrency, this.state.rightQuoteCurrency); 
+       this.getTheRates(leftBaseCurrency, this.state.rightQuoteCurrency);
+       this.getHistoricalRatesForThePair(leftBaseCurrency, this.state.rightQuoteCurrency);
     }
 
     changeQuoteCurrency = event => {
        const rightQuoteCurrency = event.target.value;
        this.setState({rightQuoteCurrency});
        this.getTheRates(this.state.leftBaseCurrency, rightQuoteCurrency);
+       this.getHistoricalRatesForThePair(this.state.leftBaseCurrency, rightQuoteCurrency);
     }
 
     forTheBase(amount, rate) {
@@ -89,8 +94,73 @@ class CurrencyConverter extends React.Component {
         this.setState({quoteAmount: event.target.value, baseAmount});
     }
     
+    getHistoricalRatesForThePair = (base, quote) => {
+        const lastDate = new Date().toISOString().split('T')[0];
+        const firstDate = new Date((new Date).getTime() - (30 * 24 * 60 * 60 * 1000)).toISOString().split('T')[0];
 
+        fetch(`https://altexchangerateapi.herokuapp.com/${firstDate}..${lastDate}?from=${base}&to=${quote}`)
+        .then(checkResponse)
+        .then(json)
+        .then(data => {
+            if(data.error) {
+                throw new Error(data.error);
+            }
 
+            const chartDates = Object.keys(data.rates);
+            const chartRates = Object.values(data.rates).map(rate => rate[quote]);
+            const labelForTheChart = `${base}/${quote}`;
+
+            this.buildChart(chartDates, chartRates, labelForTheChart);
+        })
+        .catch(error => console.error(error.message));
+    }
+
+    buildChart = (labels, data, label) => {
+
+        const chartForThePairRef = this.chartForThePairRef.current.getContext("2d");
+    
+        if (typeof this.chart !== "undefined") {
+    
+          this.chart.destroy();
+    
+        }
+    
+        this.chart = new Chart(this.chartForThePairRef.current.getContext("2d"), {
+    
+          type: 'line',
+    
+          data: {
+    
+            labels,
+    
+            datasets: [
+    
+              {
+    
+                label: label,
+    
+                data,
+    
+                fill: false,
+    
+                tension: 0,
+    
+              }
+    
+            ]
+    
+          },
+    
+          options: {
+    
+            responsive: true,
+    
+          }
+    
+        })
+    
+      }
+    
 
     render() {
         const {rate, leftBaseCurrency, baseAmount, rightQuoteCurrency, quoteAmount, date, loading } = this.state;
@@ -101,7 +171,10 @@ class CurrencyConverter extends React.Component {
             <>
                 <div className="text-center p-3">
 
-                <h3 className="mb-2">🏦Fiat Currency Converter💱</h3>
+                <h3 className="mb-2">Fiat Currency Converter</h3>
+                <span><em>check the rates and convert your fiat, only here at <a href="/">myFiatSwap🔁 </a></em></span>
+
+                <div className="d-flex justify-content-center"><hr/></div>
                 
                 <p className="text-center">{date.toLocaleDateString()}</p>
 
@@ -152,7 +225,10 @@ class CurrencyConverter extends React.Component {
                             </div>
                 
                     </div>
-                </div>
+                <canvas ref={this.chartForThePairRef} />
+            </div>
+                
+
             </>
         )
     }

@@ -26,8 +26,7 @@ const Navbar = props => {
                     <div className={`${isNavCollapsed ? 'collapse' : ''} navbar-collapse`} id="navbarsExample09">
                         <div className='d-flex flex-wrap'>
                         <a className="nav-link text-info" href="#currencyConverter">Converter</a>
-                            <a className="nav-link text-info" href="#chart">Chart</a>
-                            <a className="nav-link text-info" href="#exchangeRateList">Exchange Rate</a>
+                            <a className="nav-link text-info" href="#exchangeRateList">Exchange Rates</a>
                             <a className="nav-link text-info" href="#contactMe">Contact Me</a>
                         </div>
                     </div>
