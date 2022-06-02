@@ -103,10 +103,6 @@ const currencies = {
         symbol: 'lei',
         name: '🇷🇴 Romanian Leu',
     },
-    RUB: {
-        symbol: '₽',
-        name: '🇷🇺 Russian Ruble',
-    },
     SEK: {
         symbol: 'kr',
         name: '🇸🇪 Swedish Krona',

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CurrencyTable = props => {
-    const {baseCurrency, exchangeRates} = props;
+    const {exchangeRates} = props;
 
     if(!exchangeRates) {
         return null;
