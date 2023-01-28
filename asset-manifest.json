@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/fiatCurrencyExchangeApp/static/css/main.56b308b8.css",
+    "main.js": "/fiatCurrencyExchangeApp/static/js/main.95ecf225.js",
+    "static/js/787.45e81680.chunk.js": "/fiatCurrencyExchangeApp/static/js/787.45e81680.chunk.js",
+    "index.html": "/fiatCurrencyExchangeApp/index.html",
+    "main.56b308b8.css.map": "/fiatCurrencyExchangeApp/static/css/main.56b308b8.css.map",
+    "main.95ecf225.js.map": "/fiatCurrencyExchangeApp/static/js/main.95ecf225.js.map",
+    "787.45e81680.chunk.js.map": "/fiatCurrencyExchangeApp/static/js/787.45e81680.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.56b308b8.css",
+    "static/js/main.95ecf225.js"
+  ]
+}
