@@ -20,7 +20,7 @@ class ExchangeRateList extends React.Component {
 
     getTheDataOfRates = baseCurrency => {
         this.setState({loading: true})
-        fetch(`https://altexchangerateapi.herokuapp.com/latest?from=${baseCurrency}`)
+        fetch(`https://www.frankfurter.app/latest?from=${baseCurrency}`)
         .then(checkResponse)
         .then(json)
         .then(data => {
